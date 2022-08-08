@@ -2,7 +2,6 @@ package com.padn.shareitems.commands;
 
 import com.padn.shareitems.ShareItem;
 import cloud.commandframework.Command.Builder;
-import cloud.commandframework.Command;
 import cloud.commandframework.meta.CommandMeta;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
