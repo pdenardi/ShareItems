@@ -42,58 +42,13 @@ public class CommandHandler {
             e.printStackTrace();
         }
         EntityPotionEffectEvent.Cause MetadataHandler;
-        try {
-            manager = new BukkitCommandManager(
-                    /* Owning plugin */ MetadataHandler.PLUGIN,
-                    /* Coordinator function */ commandExecutionCoordinator,
-                    /* Command Sender -> C */ Function.identity(),
-                    /* C -> Command Sender */ Function.identity()
-            );
-        } catch (final Exception e) {
-            new WarningMessage("Failed to initialize the command manager");
-            /* Disable the plugin */
-            MetadataHandler.PLUGIN.getServer().getPluginManager().disablePlugin(MetadataHandler.PLUGIN);
-            return;
-        }
-
-        //try {
-        //    manager.registerBrigadier();
-        //} catch (final Exception e) {
-        //    new WarningMessage("Failed to initialize Brigadier support: " + e.getMessage());
-        //}
-
-        // Create a BukkitAudiences instance (adventure) in order to use the minecraft-extras help system
-        bukkitAudiences = BukkitAudiences.create(MetadataHandler.PLUGIN);
-
-        minecraftHelp = new MinecraftHelp<CommandSender>(
-                "/elitemobs help",
-                bukkitAudiences::sender,
-                manager
-        );
-
-        // Override the default exception handlers
-        new MinecraftExceptionHandler<CommandSender>()
-                .withInvalidSyntaxHandler()
-                .withInvalidSenderHandler()
-                .withNoPermissionHandler()
-                .withArgumentParsingHandler()
-                .withCommandExecutionHandler()
-                .withDecorator(
-                        component -> text()
-                                .append(text("[", NamedTextColor.DARK_GRAY))
-                                .append(text("Example", NamedTextColor.GOLD))
-                                .append(text("] ", NamedTextColor.DARK_GRAY))
-                                .append(component).build()
-                ).apply(manager, bukkitAudiences::sender);
-
-        constructCommands();
-    }
+};
 
     public void constructCommands() {
         
         // /shareitem
         final Command.Builder<CommandSender> shareItemBuilder = manager.commandBuilder("shareitem");
-        manager.command(shareItemBuilder.meta(CommandMeta.DESCRIPTION, "Shares a held Elite item on chat.")
+        manager.command(shareItemBuilder.meta(CommandMeta.DESCRIPTION, "Show the item in your hand.")
                 .senderType(Player.class)
                 //permission is dealt inside of the command
                 .permission("shareitems.use")
@@ -108,19 +63,6 @@ public class CommandHandler {
                     minecraftHelp.queryCommands(context.getOrDefault("query", ""), context.getSender());
                 }));
 
-        //// Create a world argument
-        //final CommandArgument<CommandSender, World> worldArgument = WorldArgument.of("world");
-
-        // /em
-        manager.command(builder
-                .meta(CommandMeta.DESCRIPTION, "Opens the main player interface")
-                .senderType(Player.class)
-                .handler(commandContext -> {
-                    Object DefaultConfig;
-                    if (DefaultConfig.isEmLeadsToStatusMenu())
-                        new PlayerStatusScreen((Player) commandContext.getSender());
-                }));
-        
         new UserCommands(manager, builder);
 
     }
