@@ -1,0 +1,7 @@
+name: ShareItem
+version: '${project.version}'
+main: com.padn.ShareItem
+api-version: 1.19
+authors: [ pdenardi ]
+description: Show the item in your hand.
+website: https://github.com/pdenardi
