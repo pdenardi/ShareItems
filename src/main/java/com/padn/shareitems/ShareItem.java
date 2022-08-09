@@ -30,14 +30,9 @@ public class ShareItem extends JavaPlugin {
         String name = itemStack.getItemMeta().getDisplayName();
 
         TextComponent interactiveMessage = new TextComponent(player.getDisplayName() + ": " + name);
-        setItemHoverEvent(interactiveMessage, itemStack);
 
         for (Player onlinePlayer : Bukkit.getServer().getOnlinePlayers())
             onlinePlayer.spigot().sendMessage(interactiveMessage);
     }
-
-    private static void setItemHoverEvent(TextComponent interactiveMessage, ItemStack itemStack) {
-    }
-
 
 }
