@@ -51,7 +51,7 @@ public class CommandHandler {
         manager.command(shareItemBuilder.meta(CommandMeta.DESCRIPTION, "Show the item in your hand.")
                 .senderType(Player.class)
                 //permission is dealt inside of the command
-                .permission("shareitems.use")
+                .permission("shareitem.use")
                 .handler(commandContext -> ShareItem.showOnChat((Player) commandContext.getSender())));
 
         // Base command builder

@@ -5,10 +5,22 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
-public class ShareItem {
+public class ShareItem extends JavaPlugin {
 
-    public static void showOnChat(Player player) {
+    @Override
+    public void onEnable() {
+        getLogger().info("ShareItems is WORKING :D");
+    }
+    @Override
+    public void onDisable() {
+        getLogger().info("ShareItems is disabled now");
+    }
+
+
+    public static void showOnChat(@NotNull Player player) {
         if (player.getInventory().getItemInMainHand().getType().equals(Material.AIR)) return;
         ItemStack itemStack = player.getInventory().getItemInMainHand();
         if (!itemStack.hasItemMeta()) return;
