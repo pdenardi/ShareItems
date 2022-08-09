@@ -5,15 +5,16 @@ api-version: 1.19
 authors: [ pdenardi ]
 description: Show the item in your hand.
 website: https://github.com/pdenardi
+
 permissions:
   shareitems.*:
     description: All ShareItems permissions
     default: op
   shareitems.use:
     description:  Use command
-    default: op
+    default: true
+
 commands:
   shareitem:
     aliases: [mostraritem]
-    description: Spanish command and initials
-    usage: Grab the item with the right hand, and use the command.
+    description: Grab the item with the right hand, and use the command.

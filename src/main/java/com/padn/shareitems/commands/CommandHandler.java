@@ -6,11 +6,10 @@ import cloud.commandframework.arguments.standard.StringArgument;
 import cloud.commandframework.bukkit.BukkitCommandManager;
 import cloud.commandframework.execution.CommandExecutionCoordinator;
 import cloud.commandframework.meta.CommandMeta;
-import cloud.commandframework.minecraft.extras.MinecraftExceptionHandler;
 import cloud.commandframework.minecraft.extras.MinecraftHelp;
 import com.padn.shareitems.ShareItem;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import net.kyori.adventure.text.format.NamedTextColor;
+
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityPotionEffectEvent;
@@ -18,7 +17,6 @@ import org.bukkit.event.entity.EntityPotionEffectEvent;
 import java.lang.reflect.Method;
 import java.util.function.Function;
 
-import static net.kyori.adventure.text.Component.text;
 
 
 public class CommandHandler {
@@ -55,7 +53,7 @@ public class CommandHandler {
                 .handler(commandContext -> ShareItem.showOnChat((Player) commandContext.getSender())));
 
         // Base command builder
-        final Command.Builder<CommandSender> builder = manager.commandBuilder("elitemobs", "em");
+        final Command.Builder<CommandSender> builder = manager.commandBuilder("shareitem");
 
         manager.command(builder.literal("help")
                 .argument(StringArgument.optional("query", StringArgument.StringMode.GREEDY))
